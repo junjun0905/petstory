@@ -31,6 +31,6 @@ public class Postlist {
      */
     public void setMember(Member member) {
         this.member = member;
-        member.getPostlists()   .add(this);
+        member.getPostlists().add(this);
     }
 }
