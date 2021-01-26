@@ -2,30 +2,49 @@
 
 # 목차
 
-- [🐶 팀명 (Pet Story)](#-------pet-story-)
-- [1. 프로젝트 개요](#1--------)
-  * [1. 주제](#1---)
-  * [2. 기술 스택](#2------)
-  * [3. 계획 (Gantt chart)](#3-----gantt-chart-)
-- [2. 개발 규칙](#2------)
-  * [Git](#git)
-    + [Commit Message 규약](#commit-message---)
-      - [Git Message Template](#git-message-template)
-      - [Commit Message Naming](#commit-message-naming)
-    + [Git Flow 규약](#git-flow---)
-      - [Branch Naming](#branch-naming)
-      - [Merge 규칙](#merge---)
-      - [HOW TO](#how-to)
-        * [1. Branch Fork하기](#1-branch-fork--)
-        * [2. Branch 작업하기](#2-branch-----)
-        * [3. Branch 머지하기](#3-branch-----)
-        * [Option (작업 중 최신화)](#option-----------)
-    + [Frontend React]()
-      * [convention rules]()
+[🐶팀명 (Pet Story)](#🐶팀명-(pet-story))
+
+[1. 프로젝트 개요](#1.-프로젝트-개요)
+
+​	[1.1. 주제](#1.1.-주제)
+
+​	[1.2. 기술 스택](#1.2-기술-스택)
+
+​	[1.3. 계획 (Gantt chart)](#1.3.-계획-(gantt-chart))
+
+[2. 개발 규칙](#2.-개발-규칙)
+
+​	[2.1. Git](#2.1.-git)
+
+​		[2.1.1. Commit Message 규약](#2.1.1.-commit-message-규약)
+
+​			- [Git Message Template](#git-message-template)
+
+​			- [Commit Message Naming](#commit-message-naming)
+
+​		[2.1.2. Git Flow 규약](#2.1.2.-git-flow-규약)
+
+​			- [Branch Naming](#branch-naming)
+
+​			- [Merge 규칙](#merge-규칙)
+
+​			- [HOW TO](#how-to)
+
+​				[(1) Branch Fork하기](#(1)-branch-fork하기)
+
+​				[(2) Branch 작업하기](#(2)-branch-작업하기)
+
+​				[(3) Branch merge하기](#(3)-branch-merge하기)
+
+​				[Option (작업 중 최신화)](#option-(작업-중-최신화))
+
+​	[2.2. Code Convention](#2.2.-code-convention)
+
+​		[React (FE)](#react-(fe))
 
 
 
-#  🐶 팀명 (Pet Story)
+#  🐶팀명 (Pet Story)
 
 - 팀원
   - 팀장 : 황영준
@@ -35,7 +54,7 @@
 
 # 1. 프로젝트 개요
 
-## 1. 주제
+## 1.1. 주제
 
 - WHY
 
@@ -59,14 +78,14 @@
 
 <br>
 
-## 2. 기술 스택  
+## 1.2. 기술 스택  
 
 - FE: REACT
 - BE : Spring, MySQL
 
 <br>
 
-## 3. 계획 (Gantt chart)
+## 1.3. 계획 (Gantt chart)
 
 ![ganttchart](README.assets/ganttchart-1611240655391.png)
 
@@ -76,12 +95,14 @@
 
 # 2. 개발 규칙
 
-## Git
+## 2.1. Git
 
-### Commit Message 규약
+### 2.1.1. Commit Message 규약
 
 - #### Git Message Template
 
+  C드라이브 → User → 본인 윈도우 로그인폴더 → 여기위치(Home 디렉토리) 에 .gitmessage.txt 생성 후 아래 양식 입력
+  
   ```bash
   S04P12B204- [feat] : /FE
   # 이슈 번호 [속성] : 내용 /FE 또는 /BE
@@ -106,7 +127,7 @@
   #     제목과 본문을 한 줄 띄워 분리하기
   #     본문은 "어떻게" 보다 "무엇을", "왜"를 설명한다.
   #     본문에 여러줄의 메시지를 작성할 땐 "-"로 구분
-  # ------------------
+# ------------------
   ```
 
   - 저장 시 ^M 오류 해결
@@ -114,15 +135,15 @@
     1. 적용할 파일을 vim 으로 열기
 
     2. 명령 모드에서 아래의 명령어 입력
-
+  
        ```
-       :set ff=unix
+     :set ff=unix
        ```
 
        CRLF 값을 LF로 바꿔주며, 이후에 작성한 결과도 LF 값으로 작성이 된다.
 
   - 템플릿 활용한 깃 메세지 예시
-
+  
     ![gitMessageExample](README.assets/gitMessageExample-1611240679790.png)
 
 <br>
@@ -135,7 +156,7 @@
 
   > S04P12B204-90 [feat] : 로그인 기능 /FE
 
-### Git Flow 규약
+### 2.1.2. Git Flow 규약
 
 참고 : 
 
@@ -180,7 +201,7 @@
 
 #### HOW TO 
 
-##### 1. Branch Fork하기
+##### (1) Branch Fork하기
 
 1. 프로젝트(upstream)에서 fork를 떠서 나의 레포(origin)를 생성한다
 
@@ -198,11 +219,11 @@
 
    (track은 upstream/feature를 추적한다.)
 
-   > $ git checkout -b 지라이슈번호--track upstream/feature
+   > $ git checkout -b feature-{작업내용} --track upstream/feature
 
 <br>
 
-##### 2. Branch 작업하기
+##### (2) Branch 작업하기
 
 1. 해당 브랜치에서 해당 내용을 작업하고 add 한다
 
@@ -210,7 +231,7 @@
 
 2. commit 한다(양식에 맞춰서)
 
-   > $ git commit -m “이슈번호 feat : 로그인 기능 추가/BE”
+   > $ git commit -m “이슈번호 [feat] : BE - 로그인 기능 추가”
 
 3. 필요하면 rebase로 커밋을 줄인다 아래는 2개 합친 것
 
@@ -230,7 +251,7 @@
 
 <br>
 
-##### 3. Branch 머지하기
+##### (3) Branch merge하기
 
 1. Fork뜬 나의 origin 브랜치를 upstream 브랜치에 merge하는 Pull Request를 생성합니다.
 
@@ -248,9 +269,9 @@
 
 
 
-# 3. Frontend 
+## 2.2. Code convention
 
-	## 	1. Convention Rules
+### React (FE)
 
 > Following naver convention rules
 
