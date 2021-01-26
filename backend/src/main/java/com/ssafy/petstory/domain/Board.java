@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class Board {
 
     @Column(name = "board_context")
     private String context;
+
+    private LocalDateTime boardDate; // 글생성 시간
 
     private long likeNum;
     private long reportNum;
@@ -67,10 +70,37 @@ public class Board {
     /**
      * Board 생성 메서드
      */
-    public static Board createBoard() {
+//    public static Board createBoard(Profile profile, String title, String context, BoardHashtag... boardHashtags) {
+    public static Board createBoard(String title, String context) {
         Board board = new Board();
+//        board.setProfile(profile);
+
+        board.setTitle(title);
+        board.setContext(context);
+
+        board.setBoardDate(LocalDateTime.now());
+
+
+        // 해쉬태그 추가
+//        for (BoardHashtag boardHashtag : boardHashtags) {
+//            boardHashtag.addBoardhashtag(boardHashtag);
+//        }
+
 
         return board;
     }
+
+    // ==생성 메소드== //
+//    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+//        Order order = new Order();
+//        order.setMember(member);
+//        order.setDelivery(delivery);
+//        for (OrderItem orderItem : orderItems) {
+//            order.addOrderItem(orderItem);
+//        }
+//        order.setStatus(OrderStatus.ORDER); // 처음 상태로 강제
+//        order.setOrderDate(LocalDateTime.now());
+//        return order;
+//    }
 
 }
