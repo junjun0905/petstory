@@ -1,9 +1,10 @@
-import "./app.css";
+import './app.css';
+import FeedFrame from './components/Feed/FeedFrame';
 
 function App() {
   return (
     <div className="App">
-      <h1>Eslint설정완료</h1>
+      <FeedFrame />
     </div>
   );
 }
