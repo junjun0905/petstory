@@ -1,6 +1,7 @@
 package com.ssafy.petstory.service;
 
 import com.ssafy.petstory.domain.Board;
+import com.ssafy.petstory.domain.Image;
 import com.ssafy.petstory.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,18 @@ public class BoardService {
      */
     @Transactional // 트랜잭션, 영속성 컨텍스트 -> 영속성 컨텍스트가 자동 변경
     // 값 세팅이 끝난 후 Transactional에 의해 commit이 되고 jpa는 flush(영속성 context중 변경 내역을 찾음)를 날림 -> 변경 내역이 있을 경우 변경 감지(dirty checking)
-//    public Long create(Long profileId, String title, String context) {
+//    public Long create(Long profileId, String title, String context, ItemParam... itemParams) {
     public Long create(String title, String context) {
 
         // Entity 조회
 //        Profile profile = profileRepository.findOne(profileId);
+
+        // 이미지 정보 생성
+        // 일단 단일 이미지 -> 여러개로 확장 필요(받아올 때 List로 받아서 반복문으로 넣어놓은 후
+        Image image = new Image();
+//        image.setImage(item);
+
+
 
         // 해쉬태그 생성 -> 생성시 해쉬태그 중복체크
 //        BoardHashtag boardHashtag = BoardHashtag.createBoardHashtag();
@@ -40,29 +48,24 @@ public class BoardService {
         return board.getId();
     }
 
-//    @Transactional
-//    public Long order(Long memberId, Long itemId, int count) {
-//
-//        // 엔티티 조회
-//        Member member = memberRepository.findOne(memberId);
-//        Item item = itemRepository.findOne(itemId);
-//
-//        // 배송 정보 생성
-//        Delivery delivery = new Delivery();
-//        delivery.setAddress(member.getAddress());
-//        delivery.setStatus(DeliveryStatus.READY);
-//
-//        // 주문 상품 생성
-//        OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
-//
-//        // 주문 생성
-//        Order order = Order.createOrder(member, delivery, orderItem);
-//
-//        // 주문 저장
-//        orderRepository.save(order);
-//
-//        return order.getId();
-//    }
+    private class ItemParam {
+        private Long id;
+        private String image;
+    }
+
+    /**
+     * 이미지 생성 테스트
+     */
+    @Transactional
+    public Long createImage(String image) {
+        Image testImg = new Image();
+        testImg.setImage(image);
+
+        boardRepository.saveImg(testImg);
+
+        return testImg.getId();
+    }
+
 
     /**
      * 게시물 읽기

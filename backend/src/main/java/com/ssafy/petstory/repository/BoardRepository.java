@@ -1,6 +1,7 @@
 package com.ssafy.petstory.repository;
 
 import com.ssafy.petstory.domain.Board;
+import com.ssafy.petstory.domain.Image;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,9 @@ public class BoardRepository {
         em.persist(board);
     }
 
+
+    /**
+     * 이미지 생성 테스트
+     */
+    public void saveImg(Image image){em.persist(image);}
 }

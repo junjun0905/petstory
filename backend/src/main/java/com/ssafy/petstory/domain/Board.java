@@ -50,6 +50,10 @@ public class Board {
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
+    // Board와 Image는 일대일 관계
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private Image image;
 
     /**
      * Profile과 Board 연관 관계 (편의) 메서드
@@ -57,6 +61,14 @@ public class Board {
     public void setProfile(Profile profile) {
         this.profile = profile;
         profile.getBoards().add(this);
+    }
+
+    /**
+     * Board와 Image 연관 관계 (편의) 메서드
+     */
+    public void setImage(Image image) {
+        this.image = image;
+        image.setBoard(this);
     }
 
     /**

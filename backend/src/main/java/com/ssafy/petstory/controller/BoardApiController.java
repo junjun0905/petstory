@@ -15,6 +15,25 @@ public class BoardApiController {
 
 
     /**
+     * 이미지 생성 테스트
+     * -> db에 넣어보기
+     */
+//    @PostMapping("/api/board/img")
+//    public Long creatImage(){
+//
+//    }
+
+
+    /**
+     * 게시물 조회
+     */
+    @GetMapping("/api/board/")
+    /**
+     * findAll, findOne -> 무한 스크롤 로직에 맞춰서 -> 일단, Paging 처리같음 -> FE에 맞춰서 비즈니스 로직 설계
+     */
+
+
+    /**
      * 게시물 생성
      */
     @PostMapping("/api/board/create")
@@ -33,6 +52,8 @@ public class BoardApiController {
     static class CreateBoardRequest {
         private String title;
         private String context;
+
+//        private String image;
     }
 
     @Data
@@ -43,6 +64,8 @@ public class BoardApiController {
             this.id = id;
         }
     }
+
+
 
 
 }
