@@ -20,6 +20,8 @@ import java.io.IOException;
 @NoArgsConstructor
 public class S3Service {
     private AmazonS3 s3Client;
+    public static final String CLOUD_FRONT_DOMAIN_NAME = "d1u3n4p0t0i6a9.cloudfront.net";
+
 
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
@@ -43,11 +45,19 @@ public class S3Service {
                 .build();
     }
 
+    //    public String upload(MultipartFile file) throws IOException {
+//        String fileName = file.getOriginalFilename();
+//
+//        s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
+//                .withCannedAcl(CannedAccessControlList.PublicRead));
+//        return s3Client.getUrl(bucket, fileName).toString();
+//    }
     public String upload(MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
 
         s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
-        return s3Client.getUrl(bucket, fileName).toString();
+
+        return fileName;
     }
 }
