@@ -1,28 +1,46 @@
 package com.ssafy.petstory.controller;
 
+import com.ssafy.petstory.dto.FileDto;
+import com.ssafy.petstory.service.AwsS3Service;
 import com.ssafy.petstory.service.BoardService;
+import com.ssafy.petstory.service.FileService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor // final, nonnull인 field를 가지고 생성자를 만들어줌
 public class BoardApiController {
 
     private final BoardService boardService;
-
+    private final FileService fileService;
+    private final AwsS3Service awsS3Service;
 
     /**
      * 이미지 생성 테스트
      * -> db에 넣어보기
      */
-//    @PostMapping("/api/board/img")
-//    public Long creatImage(){
-//
-//    }
+    @PostMapping("/api/board/file")
+//    public HttpStatus fileUpload(FileDto fileDto, List<MultipartFile> files) throws IOException{
+    public HttpStatus fileUpload(FileDto fileDto, MultipartFile file) throws IOException{
+        System.out.println("=======================================================");
+        String imgPath = awsS3Service.upload(file); // dto아래서 빼서 넣을라면 반복문 코드 서비스에서 빼와야됨, 아니면 서비스로 가든가
+//        String imgPath = awsS3Service.upload(files); // dto아래서 빼서 넣을라면 반복문 코드 서비스에서 빼와야됨, 아니면 서비스로 가든가
+        fileDto.setFilePath(imgPath);
 
+        fileService.save(fileDto);
+
+        return HttpStatus.OK;
+
+    }
 
     /**
      * 게시물 조회
@@ -45,7 +63,6 @@ public class BoardApiController {
         Long id = boardService.create(request.title, request.context);
 
         return new CreateBoardResponse(id);
-
     }
 
     @Data

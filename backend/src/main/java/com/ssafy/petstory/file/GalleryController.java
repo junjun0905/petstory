@@ -30,8 +30,6 @@ public class GalleryController {
         String imgPath = s3Service.upload(file);
         galleryDto.setFilePath(imgPath);
 
-
-
         galleryService.savePost(galleryDto);
 
         return "redirect:/gallery";
