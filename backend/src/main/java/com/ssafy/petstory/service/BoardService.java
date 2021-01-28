@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true) // 데이터의 변경이 없는 읽기 전용 메서드에 사용, 영속성 컨텍스트를 플러시 하지 않으므로 약간의 성능 향상(읽기 전용에는 다 적용)
@@ -64,12 +65,23 @@ public class BoardService {
     }
 
     /**
+     * 게시물 전체 조회
+     */
+    public List<Board> findAll() {
+        return boardRepository.findAll();
+    }
+
+    /**
      * 게시물 상세 조회
      */
     public Board findOne(Long boardId) {
         return boardRepository.findOne(boardId);
     }
 
+    private class ItemParam {
+        private Long id;
+        private String image;
+    }
 
 
     /**

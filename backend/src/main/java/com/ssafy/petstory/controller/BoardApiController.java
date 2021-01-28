@@ -60,8 +60,12 @@ public class BoardApiController {
      */
     @GetMapping("/api/board/findAll")
     public Result<BoardDto> fildAllV3() {
+//        List<> galleryDtoList = galleryService.getList();
+//        model.addAttribute("galleryList", galleryDtoList);
+//        return "/gallery";
 
-        List<Board> boards = boardRepository.findAll();
+//        List<Board> boards = boardRepository.findAll();
+        List<Board> boards = boardService.findAll();
         List<BoardDto> result = boards.stream()
                 .map(b -> new BoardDto(b))
                 .collect(Collectors.toList());
@@ -72,12 +76,12 @@ public class BoardApiController {
      * 게시물 상세 조회
      */
     @GetMapping("/api/board/findOne/{boardId}")
-    public BoardDto findOne(@PathVariable("boardId") Long boardId){
+    public Result<com.ssafy.petstory.dto.BoardDto> findOne(@PathVariable("boardId") Long boardId){
         Board board = boardService.findOne(boardId);
         board.getFile().getImgFullPath(); // Lazy 강제 초기화
-        BoardDto boardDto = new BoardDto(board);
+        BoardDto result = new BoardDto(board);
 
-        return boardDto;
+        return new Result(result);
     }
 
     /**
@@ -111,6 +115,5 @@ public class BoardApiController {
             this.id = id;
         }
     }
-
 
 }

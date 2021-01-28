@@ -46,10 +46,6 @@ public class BoardRepository {
      */
     public Board findOne(Long boardId) {
         return em.find(Board.class, boardId);
-//        return em.createQuery(
-//                "select distinct b from Board b" +
-//                        " join fetch b.file f", Board.class)
-//                .getSingleResult();
 
     }
 }
