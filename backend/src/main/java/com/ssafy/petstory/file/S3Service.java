@@ -45,13 +45,7 @@ public class S3Service {
                 .build();
     }
 
-    //    public String upload(MultipartFile file) throws IOException {
-//        String fileName = file.getOriginalFilename();
-//
-//        s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
-//                .withCannedAcl(CannedAccessControlList.PublicRead));
-//        return s3Client.getUrl(bucket, fileName).toString();
-//    }
+
     public String upload(MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
 

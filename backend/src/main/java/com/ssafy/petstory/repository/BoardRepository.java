@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor // final, nonnull인 field를 가지고 생성자를 만들어줌
@@ -24,5 +25,19 @@ public class BoardRepository {
     /**
      * 이미지 생성 테스트
      */
-    public void saveImg(Image image){em.persist(image);}
+    public void saveImg(Image image) {
+        em.persist(image);
+    }
+
+    /**
+     * 게시물 전체 조회
+     * V3
+     * xToOne 전부 fetch join -> row수가 One을 기준으로 늘어나지 않음
+     */
+    public List<Board> findAll() {
+        return em.createQuery(
+                "select b from Board b" +
+                        " join fetch b.file f", Board.class)
+                .getResultList();
+    }
 }

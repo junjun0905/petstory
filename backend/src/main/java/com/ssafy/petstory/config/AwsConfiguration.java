@@ -41,7 +41,7 @@ public class AwsConfiguration {
 //                .withExecutorFactory(() -> createExecutorService(awsS3Property.getTransferThread()))
 //                .build();
 //    }
-
+//
 //    private ThreadPoolExecutor createExecutorService(int threadNumber) {
 //        ThreadFactory threadFactory = new ThreadFactory() {
 //            private final AtomicInteger threadCount = new AtomicInteger(1);

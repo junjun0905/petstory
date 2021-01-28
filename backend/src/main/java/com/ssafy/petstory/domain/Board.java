@@ -33,7 +33,7 @@ public class Board {
     private long likeNum;
     private long reportNum;
 
-    private long hashtag_id;
+//    private long hashtag_id;
 
     // BoardHashtag table에 있는 board field에 의해서 매핑됨(이 값의 변경이 fk에 영향을 미치지 않음)
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -50,10 +50,10 @@ public class Board {
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
-    // Board와 Image는 일대일 관계
+    // Board와 file는 일대일 관계 -> 여러장 사진 일대다로 바꿔야됨
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id")
-    private Image image;
+    @JoinColumn(name = "file_id")
+    private File file;
 
     /**
      * Profile과 Board 연관 관계 (편의) 메서드
@@ -64,11 +64,11 @@ public class Board {
     }
 
     /**
-     * Board와 Image 연관 관계 (편의) 메서드
+     * Board와 File 연관 관계 (편의) 메서드
      */
-    public void setImage(Image image) {
-        this.image = image;
-        image.setBoard(this);
+    public void setFile(File file) {
+        this.file = file;
+        file.setBoard(this);
     }
 
     /**
