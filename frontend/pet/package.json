@@ -23,10 +23,7 @@
     "http-proxy-middleware": "^1.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-<<<<<<< HEAD
     "react-google-login": "^5.2.2",
-=======
->>>>>>> 8455288 (S04P12B204-119 [feat]: FE - 새글생생성 NAV에 추가)
     "react-kakao-login": "^2.0.3",
     "react-modal": "^3.12.1",
     "react-redux": "^7.2.2",
