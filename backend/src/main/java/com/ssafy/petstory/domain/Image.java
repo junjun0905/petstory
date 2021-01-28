@@ -1,6 +1,5 @@
 package com.ssafy.petstory.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,9 +18,9 @@ public class Image {
 
     private String image;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "image", fetch = FetchType.LAZY)
-    private Board board;
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "image", fetch = FetchType.LAZY)
+//    private Board board;
 
 
 }

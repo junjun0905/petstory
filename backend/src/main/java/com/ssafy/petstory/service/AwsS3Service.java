@@ -23,10 +23,15 @@ public class AwsS3Service {
 
     public static final String CLOUD_FRONT_DOMAIN_NAME = "d1u3n4p0t0i6a9.cloudfront.net";
 
+//    @Value("${file.upload-path}")
+//    private String tempPath;
 
     @Transactional
     public String upload(MultipartFile file) throws IOException {
-        System.out.println(awsS3Property.getAccessKey() + "   " + awsS3Property.getBucket());
+//        System.out.println(awsS3Property.getAccessKey() + "   " + awsS3Property.getBucket());
+
+
+
         amazonS3 = awsConfiguration.setS3Client();
         String fileName = file.getOriginalFilename();
 
