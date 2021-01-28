@@ -1,21 +1,22 @@
 package com.ssafy.petstory.controller;
 
 import com.ssafy.petstory.domain.Board;
-import com.ssafy.petstory.domain.File;
+import com.ssafy.petstory.dto.BoardDto;
 import com.ssafy.petstory.dto.FileDto;
 import com.ssafy.petstory.repository.BoardRepository;
 import com.ssafy.petstory.service.AwsS3Service;
 import com.ssafy.petstory.service.BoardService;
 import com.ssafy.petstory.service.FileService;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,6 +47,11 @@ public class BoardApiController {
 //        return HttpStatus.OK;
 //
 //    }
+    @Data
+    @AllArgsConstructor
+    static class Result<T>{
+        private T data;
+    }
 
     /**
      * 게시물 전체 조회
@@ -53,16 +59,25 @@ public class BoardApiController {
      * 일단 v3 시도
      */
     @GetMapping("/api/board/findAll")
-    public List<BoardDto> fildAllV3() {
-//        List<> galleryDtoList = galleryService.getList();
-//        model.addAttribute("galleryList", galleryDtoList);
-//        return "/gallery";
+    public Result<BoardDto> fildAllV3() {
 
         List<Board> boards = boardRepository.findAll();
         List<BoardDto> result = boards.stream()
                 .map(b -> new BoardDto(b))
                 .collect(Collectors.toList());
-        return result;
+        return new Result(result);
+    }
+
+    /**
+     * 게시물 상세 조회
+     */
+    @GetMapping("/api/board/findOne/{boardId}")
+    public BoardDto findOne(@PathVariable("boardId") Long boardId){
+        Board board = boardService.findOne(boardId);
+        board.getFile().getImgFullPath(); // Lazy 강제 초기화
+        BoardDto boardDto = new BoardDto(board);
+
+        return boardDto;
     }
 
     /**
@@ -97,27 +112,5 @@ public class BoardApiController {
         }
     }
 
-
-    @Data
-    private class BoardDto {
-
-        private Long boardId;
-        private String title;
-        private String context;
-        private LocalDateTime boardDate; // 글생성 시간
-        private File file; // 사진 여러장 -> 리스트로 바꿔야함
-//        private long likeNum;
-//        private long reportNum;
-//        private List<BoardHashtag> boardHashtags;
-//        private List<Comment> comments;
-
-        public BoardDto(Board board) {
-            boardId = board.getId();
-            title = board.getTitle();
-            context = board.getContext();
-            boardDate = board.getBoardDate();
-            file = board.getFile();
-        }
-    }
 
 }

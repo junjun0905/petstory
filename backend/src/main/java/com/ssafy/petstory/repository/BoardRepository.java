@@ -40,4 +40,16 @@ public class BoardRepository {
                         " join fetch b.file f", Board.class)
                 .getResultList();
     }
+
+    /**
+     * 게시물 상세 조회
+     */
+    public Board findOne(Long boardId) {
+        return em.find(Board.class, boardId);
+//        return em.createQuery(
+//                "select distinct b from Board b" +
+//                        " join fetch b.file f", Board.class)
+//                .getSingleResult();
+
+    }
 }

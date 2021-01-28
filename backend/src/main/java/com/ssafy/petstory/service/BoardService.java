@@ -2,7 +2,6 @@ package com.ssafy.petstory.service;
 
 import com.ssafy.petstory.domain.Board;
 import com.ssafy.petstory.domain.File;
-import com.ssafy.petstory.domain.Image;
 import com.ssafy.petstory.dto.FileDto;
 import com.ssafy.petstory.repository.BoardRepository;
 import com.ssafy.petstory.repository.FileRepository;
@@ -64,28 +63,14 @@ public class BoardService {
         return board.getId();
     }
 
-    private class ItemParam {
-        private Long id;
-        private String image;
-    }
-
     /**
-     * 이미지 생성 테스트
+     * 게시물 상세 조회
      */
-    @Transactional
-    public Long createImage(String image) {
-        Image testImg = new Image();
-        testImg.setImage(image);
-
-        boardRepository.saveImg(testImg);
-
-        return testImg.getId();
+    public Board findOne(Long boardId) {
+        return boardRepository.findOne(boardId);
     }
 
 
-    /**
-     * 게시물 읽기
-     */
 
     /**
      * 게시물 수정
