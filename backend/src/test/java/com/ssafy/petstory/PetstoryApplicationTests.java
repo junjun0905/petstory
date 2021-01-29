@@ -1,13 +1,14 @@
-package com.ssafy.petstagram;
+package com.ssafy.petstory;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PetstagramApplicationTests {
+class PetstoryApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
+
 
 }
