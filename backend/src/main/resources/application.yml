@@ -7,10 +7,10 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #    url: jdbc:mysql://localhost:3306/jpashop?serverTimezone=UTC&characterEncoding=UTF-8
-    url: jdbc:mysql://ubuntu@i4b204.p.ssafy.io:3306/petstory?serverTimezone=UTC&characterEncoding=UTF-8
-    username: root
-    password: ssafy204
+    #    url:-
+    url: -
+    username: -
+    password: -
 
   jpa:
     generate-ddl: true
@@ -46,8 +46,8 @@ logging:
 cloud:
   aws:
     credentials:
-      accessKey: AKIAYL2LDM2UK3HZVJ6Y
-      secretKey: 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
+      accessKey: -
+      secretKey: -
     s3:
       bucket: petstory-image
     region:
